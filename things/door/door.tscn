@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://things/thing.tscn" type="PackedScene" id=1]
+[ext_resource path="res://things/door/door.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[node name="door" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "collision" ]
+msg = null
+locked = false
+change_scene = false
+change_area = false
+locked_msg = "Locked..."
+travel_msg = "Enter?"
+key = null
+destination = null
+dest_position = null
+dest_face = "up"
+
+[node name="physics" parent="." index="3"]
+
+shape = SubResource( 1 )
+
+

@@ -1,0 +1,450 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://zones/area.tscn" type="PackedScene" id=1]
+[ext_resource path="res://zones/neighborhood/neighborhood_area.gd" type="Script" id=2]
+[ext_resource path="res://zones/neighborhood/neighborhood_map.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/astar.gd" type="Script" id=4]
+[ext_resource path="res://src/location.gd" type="Script" id=5]
+[ext_resource path="res://things/door/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/npcs/npc.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/npcs/sprites/police.png" type="Texture" id=8]
+[ext_resource path="res://actors/npcs/scripts/random_target.gd" type="Script" id=9]
+[ext_resource path="res://actors/npcs/scripts/follower.gd" type="Script" id=10]
+[ext_resource path="res://actors/npcs/sprites/tommy.png" type="Texture" id=11]
+[ext_resource path="res://actors/npcs/sprites/miguel.png" type="Texture" id=12]
+[ext_resource path="res://actors/npcs/enemies/enemy.tscn" type="PackedScene" id=13]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "hooray_down"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "hooray_left"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "hooray_right"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "hooray_up"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=8]
+
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=9]
+
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 10 ]
+}
+
+[sub_resource type="Animation" id=10]
+
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=11]
+
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 5, 6 ]
+}
+
+[sub_resource type="Animation" id=12]
+
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 13, 14 ]
+}
+
+[node name="neighborhood" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="map" parent="." index="0" instance=ExtResource( 3 )]
+
+script = ExtResource( 4 )
+
+[node name="door_home" type="Position2D" parent="locs" index="0"]
+
+position = Vector2( 2210, 219 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = false
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="door_bar" type="Position2D" parent="locs" index="1"]
+
+position = Vector2( 2272.87, 1943.11 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="exit_south" type="Position2D" parent="locs" index="2"]
+
+position = Vector2( 2235.86, 2951.62 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="exit_west" type="Position2D" parent="locs" index="3"]
+
+position = Vector2( 51.2661, 1465.16 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="exit_east" type="Position2D" parent="locs" index="4"]
+
+position = Vector2( 3277.57, 1114.79 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="door_dentist" type="Position2D" parent="locs" index="5"]
+
+position = Vector2( 1377.38, 2711.4 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="door_home" parent="objects" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 2208.33, 159.904 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+change_area = true
+key = "Null"
+destination = "home"
+dest_position = "door"
+
+[node name="door_house_1" parent="objects" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 1375.79, 991.699 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+msg = "Null"
+locked = true
+key = "Null"
+
+[node name="door_house_2" parent="objects" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 2143.56, 991.519 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+msg = "Null"
+locked = true
+key = "Null"
+
+[node name="door_house_3" parent="objects" index="3" instance=ExtResource( 6 )]
+
+position = Vector2( 1375.6, 1824.35 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+msg = "Null"
+locked = true
+key = "Null"
+
+[node name="door_bar" parent="objects" index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 2272.3, 1886 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+msg = "Null"
+change_area = true
+key = "Null"
+destination = "bar"
+dest_position = "door"
+
+[node name="sewer_dungeon" parent="objects" index="5" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+position = Vector2( 2877.44, 2485.4 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+msg = "Null"
+change_scene = true
+travel_msg = "Jump in?"
+key = "Null"
+destination = "dungeon"
+dest_position = "player_start"
+dest_face = "down"
+
+[node name="police_1" parent="objects" index="6" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1641, 38 )
+_sections_unfolded = [ "Collision", "Transform" ]
+msg = "*Munch* *munch*
+
+Get lost kid."
+
+[node name="sprite" parent="objects/police_1" index="0"]
+
+texture = ExtResource( 8 )
+
+[node name="police_2" parent="objects" index="7" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 1958, 37 )
+_sections_unfolded = [ "Collision", "Transform" ]
+msg = "Sorry buddy, nobody is going downtown until we catch the thief that robbed the convenient store.
+
+I heard he bit the clerk..."
+
+[node name="sprite" parent="objects/police_2" index="0"]
+
+texture = ExtResource( 8 )
+
+[node name="police_3" parent="objects" index="8" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 2258.64, 593.393 )
+script = ExtResource( 9 )
+_sections_unfolded = [ "Collision", "Transform" ]
+msg = "We could catch this guy no problem if that silly dentist would just hand over his dental records...
+
+*grumble* *grumble*"
+
+[node name="sprite" parent="objects/police_3" index="0"]
+
+texture = ExtResource( 8 )
+
+[node name="tommy" parent="objects" index="9" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 2402.51, 218.372 )
+script = ExtResource( 10 )
+_sections_unfolded = [ "Collision", "Transform" ]
+msg = "Sup, dawg."
+
+[node name="sprite" parent="objects/tommy" index="0"]
+
+texture = ExtResource( 11 )
+
+[node name="miguel" parent="objects" index="10" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+position = Vector2( 2065.11, 224.58 )
+script = ExtResource( 10 )
+_sections_unfolded = [ "Collision", "Transform" ]
+msg = "Hey man, let's chill."
+
+[node name="sprite" parent="objects/miguel" index="0"]
+
+texture = ExtResource( 12 )
+
+[node name="anim" parent="objects/miguel" index="1"]
+
+anims/hooray_down = SubResource( 1 )
+anims/hooray_left = SubResource( 2 )
+anims/hooray_right = SubResource( 3 )
+anims/hooray_up = SubResource( 4 )
+anims/idle_down = SubResource( 5 )
+anims/idle_left = SubResource( 6 )
+anims/idle_right = SubResource( 7 )
+anims/idle_up = SubResource( 8 )
+anims/walk_down = SubResource( 9 )
+anims/walk_left = SubResource( 10 )
+anims/walk_right = SubResource( 11 )
+anims/walk_up = SubResource( 12 )
+
+[node name="enemy" parent="objects" index="11" instance=ExtResource( 13 )]
+
+position = Vector2( 584.564, 584.564 )
+
+
+[editable path="objects/sewer_dungeon"]
+[editable path="objects/police_1"]
+[editable path="objects/police_2"]
+[editable path="objects/police_3"]
+[editable path="objects/tommy"]
+[editable path="objects/miguel"]

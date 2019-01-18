@@ -1,0 +1,160 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://zones/zone.gd" type="Script" id=1]
+[ext_resource path="res://ui/dialog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/hacker_pixel.tres" type="Theme" id=3]
+[ext_resource path="res://ui/console.gd" type="Script" id=4]
+[ext_resource path="res://ui/game_menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/choice_dialog.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/player_menu/player_menu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/player_health.gd" type="Script" id=8]
+[ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/camera.gd" type="Script" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[node name="zone" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="night_mask" type="CanvasModulate" parent="." index="0"]
+
+visible = false
+color = Color( 0.345098, 0.345098, 0.862745, 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="areas" type="Node2D" parent="." index="1"]
+
+pause_mode = 1
+z_index = -1
+_sections_unfolded = [ "Pause", "Z Index" ]
+
+[node name="ui" type="CanvasLayer" parent="." index="2"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+_sections_unfolded = [ "Pause" ]
+
+[node name="dialog" parent="ui" index="0" instance=ExtResource( 2 )]
+
+pause_mode = 2
+visible = false
+_sections_unfolded = [ "Pause", "Popup", "Rect", "Theme" ]
+
+[node name="console_out" type="Label" parent="ui" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 623.0
+margin_bottom = 170.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 3 )
+custom_styles/normal = SubResource( 1 )
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 4 )
+_sections_unfolded = [ "Theme", "custom_colors", "custom_fonts", "custom_styles" ]
+
+[node name="game_menu" parent="ui" index="2" instance=ExtResource( 5 )]
+
+visible = false
+popup_exclusive = true
+_sections_unfolded = [ "Popup", "Theme", "custom_styles" ]
+
+[node name="choice_dialog" parent="ui" index="3" instance=ExtResource( 6 )]
+
+visible = false
+
+[node name="player_menu" parent="ui" index="4" instance=ExtResource( 7 )]
+
+visible = false
+
+[node name="player_health" type="ProgressBar" parent="ui" index="5"]
+
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -216.0
+margin_top = 64.0
+margin_right = -64.0
+margin_bottom = 28.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 3 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 100.0
+exp_edit = false
+rounded = false
+percent_visible = true
+script = ExtResource( 8 )
+_sections_unfolded = [ "Anchor", "Margin", "Theme" ]
+
+[node name="player" parent="." index="3" instance=ExtResource( 9 )]
+
+pause_mode = 1
+position = Vector2( 687.408, 549.129 )
+_sections_unfolded = [ "Collision", "Pause", "Pickable" ]
+
+[node name="camera" type="Camera2D" parent="player" index="3"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = 0
+limit_top = 0
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 10 )
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset" ]
+
+[connection signal="console_add" from="." to="ui/console_out" method="_on_zone_console_add"]
+
+[connection signal="open_choice_dialog" from="player" to="ui/choice_dialog" method="open"]
+
+[connection signal="open_game_menu" from="player" to="ui/game_menu" method="_on_player_open_game_menu"]
+
+[connection signal="open_player_menu" from="player" to="ui/player_menu" method="open"]
+
+

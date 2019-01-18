@@ -1,0 +1,254 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://actors/npcs/npc.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/npcs/enemies/enemy.gd" type="Script" id=2]
+[ext_resource path="res://ui/hacker_pixel.tres" type="Theme" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=5]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "attack_down"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "attack_left"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "attack_right"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "attack_up"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 19 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "hit_down"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 22 ]
+}
+
+[sub_resource type="Animation" id=7]
+
+resource_name = "hit_left"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+
+[sub_resource type="Animation" id=8]
+
+resource_name = "hit_right"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 21 ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "hit_up"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 23 ]
+}
+
+[node name="enemy" groups=[
+"enemies",
+] instance=ExtResource( 1 )]
+
+collision_layer = 16
+collision_mask = 9
+script = ExtResource( 2 )
+msg = "Hi!"
+
+[node name="sprite" parent="." index="0"]
+
+material = SubResource( 5 )
+hframes = 24
+frame = 0
+_sections_unfolded = [ "Animation", "Material" ]
+
+[node name="anim" parent="." index="1"]
+
+anims/attack_down = SubResource( 1 )
+anims/attack_left = SubResource( 2 )
+anims/attack_right = SubResource( 3 )
+anims/attack_up = SubResource( 4 )
+anims/hit_down = SubResource( 6 )
+anims/hit_left = SubResource( 7 )
+anims/hit_right = SubResource( 8 )
+anims/hit_up = SubResource( 9 )
+
+[node name="interact" parent="." index="3"]
+
+collision_layer = 16
+
+[node name="shape" parent="interact" index="0"]
+
+disabled = true
+
+[node name="visibility" type="VisibilityNotifier2D" parent="." index="4"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="hitbox" type="Area2D" parent="." index="5"]
+
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 16
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="shape" type="CollisionPolygon2D" parent="hitbox" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -8, -32, 8, -32, 8, -28, 12, -28, 12, -4, 8, -4, 8, 16, 4, 16, 4, 32, 0, 32, 0, 24, -4, 24, -4, 32, -8, 32, -8, -8, -12, -8, -12, -12, -16, -12, -16, -24, -12, -24, -12, -28, -8, -28 )
+
+[node name="hp" type="ProgressBar" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -63.0
+margin_top = -78.0
+margin_right = 64.0
+margin_bottom = -42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 3 )
+min_value = -1.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = true
+percent_visible = true
+_sections_unfolded = [ "Percent", "Theme" ]
+
+[connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
+
+[connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]
+
+

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://zones/area.gd" type="Script" id=1]
+
+[node name="area" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+outside = false
+public = false
+hostile = false
+
+[node name="locs" type="Node" parent="." index="0"]
+
+[node name="objects" type="YSort" parent="." index="1"]
+
+sort_enabled = true
+
+

@@ -1,0 +1,173 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/hacker_pixel.tres" type="Theme" id=1]
+[ext_resource path="res://ui/titlescreen.gd" type="Script" id=2]
+[ext_resource path="res://Hacker_002.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://ui/fonts/gameboy.tres" type="DynamicFont" id=5]
+
+[node name="titlescreen" type="ViewportContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+stretch = false
+stretch_shrink = 1
+script = ExtResource( 2 )
+_sections_unfolded = [ "Theme" ]
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 4
+
+[node name="icon" type="TextureRect" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -97.0
+margin_top = 363.0
+margin_right = -33.0
+margin_bottom = 427.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+
+[node name="newgame" type="Button" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 256.0
+margin_top = 320.0
+margin_right = 576.0
+margin_bottom = 363.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_left = NodePath("../quit")
+focus_neighbour_top = NodePath("../quit")
+focus_neighbour_right = NodePath("../loadgame")
+focus_neighbour_bottom = NodePath("../loadgame")
+focus_next = NodePath("../loadgame")
+focus_previous = NodePath("../quit")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "New Game"
+flat = false
+align = 1
+_sections_unfolded = [ "Focus" ]
+
+[node name="loadgame" type="Button" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 352.0
+margin_top = 416.0
+margin_right = 672.0
+margin_bottom = 459.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_left = NodePath("../newgame")
+focus_neighbour_top = NodePath("../newgame")
+focus_neighbour_right = NodePath("../quit")
+focus_neighbour_bottom = NodePath("../quit")
+focus_next = NodePath("../quit")
+focus_previous = NodePath("../newgame")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Load Game"
+flat = false
+align = 1
+
+[node name="quit" type="Button" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 480.0
+margin_top = 512.0
+margin_right = 768.0
+margin_bottom = 555.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_left = NodePath("../loadgame")
+focus_neighbour_top = NodePath("../loadgame")
+focus_neighbour_right = NodePath("../newgame")
+focus_neighbour_bottom = NodePath("../newgame")
+focus_next = NodePath("../newgame")
+focus_previous = NodePath("../loadgame")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Quit"
+flat = false
+align = 1
+
+[connection signal="button_up" from="newgame" to="." method="_on_newgame_button_up"]
+
+[connection signal="focus_entered" from="newgame" to="." method="_on_newgame_focus_entered"]
+
+[connection signal="focus_entered" from="loadgame" to="." method="_on_loadgame_focus_entered"]
+
+[connection signal="button_up" from="quit" to="." method="_on_quit_button_up"]
+
+[connection signal="focus_entered" from="quit" to="." method="_on_quit_focus_entered"]
+
+
