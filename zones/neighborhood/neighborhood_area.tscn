@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://zones/area.tscn" type="PackedScene" id=1]
 [ext_resource path="res://zones/neighborhood/neighborhood_area.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://actors/npcs/scripts/follower.gd" type="Script" id=10]
 [ext_resource path="res://actors/npcs/sprites/tommy.png" type="Texture" id=11]
 [ext_resource path="res://actors/npcs/sprites/miguel.png" type="Texture" id=12]
-[ext_resource path="res://actors/npcs/enemies/enemy.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -234,7 +233,7 @@ tracks/0/keys = {
 "values": [ 13, 14 ]
 }
 
-[node name="neighborhood" instance=ExtResource( 1 )]
+[node name="neighborhood" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 
@@ -244,7 +243,7 @@ script = ExtResource( 4 )
 
 [node name="door_home" type="Position2D" parent="locs" index="0"]
 
-position = Vector2( 2210, 219 )
+position = Vector2( 349.784, 1063.29 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 spawn = false
@@ -254,7 +253,7 @@ max_random = 64
 
 [node name="door_bar" type="Position2D" parent="locs" index="1"]
 
-position = Vector2( 2272.87, 1943.11 )
+position = Vector2( 1313.22, 478.008 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 spawn = true
@@ -262,9 +261,9 @@ available = true
 max_visitors = 3
 max_random = 64
 
-[node name="exit_south" type="Position2D" parent="locs" index="2"]
+[node name="exit_north" type="Position2D" parent="locs" index="2"]
 
-position = Vector2( 2235.86, 2951.62 )
+position = Vector2( 669.806, 37.1191 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 spawn = true
@@ -272,9 +271,9 @@ available = true
 max_visitors = 3
 max_random = 64
 
-[node name="exit_west" type="Position2D" parent="locs" index="3"]
+[node name="exit_north2" type="Position2D" parent="locs" index="3"]
 
-position = Vector2( 51.2661, 1465.16 )
+position = Vector2( 1002.22, 37.1191 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 spawn = true
@@ -282,9 +281,9 @@ available = true
 max_visitors = 3
 max_random = 64
 
-[node name="exit_east" type="Position2D" parent="locs" index="4"]
+[node name="exit_west" type="Position2D" parent="locs" index="4"]
 
-position = Vector2( 3277.57, 1114.79 )
+position = Vector2( 29.1055, 1447.43 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 spawn = true
@@ -292,19 +291,49 @@ available = true
 max_visitors = 3
 max_random = 64
 
-[node name="door_dentist" type="Position2D" parent="locs" index="5"]
+[node name="exit_west2" type="Position2D" parent="locs" index="5"]
 
-position = Vector2( 1377.38, 2711.4 )
+position = Vector2( 30.2135, 1112.81 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="exit_east" type="Position2D" parent="locs" index="6"]
+
+position = Vector2( 1894.46, 1115.9 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="exit_east2" type="Position2D" parent="locs" index="7"]
+
+position = Vector2( 1891.14, 1449.42 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = true
+available = true
+max_visitors = 3
+max_random = 64
+
+[node name="door_shop" type="Position2D" parent="locs" index="8"]
+
+position = Vector2( 1250.5, 1054.13 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+spawn = false
 available = true
 max_visitors = 3
 max_random = 64
 
 [node name="door_home" parent="objects" index="0" instance=ExtResource( 6 )]
 
-position = Vector2( 2208.33, 159.904 )
+position = Vector2( 351.498, 991.04 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 change_area = true
 key = "Null"
@@ -313,31 +342,15 @@ dest_position = "door"
 
 [node name="door_house_1" parent="objects" index="1" instance=ExtResource( 6 )]
 
-position = Vector2( 1375.79, 991.699 )
+position = Vector2( 1760.28, 989.483 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 msg = "Null"
 locked = true
 key = "Null"
 
-[node name="door_house_2" parent="objects" index="2" instance=ExtResource( 6 )]
+[node name="door_bar" parent="objects" index="2" instance=ExtResource( 6 )]
 
-position = Vector2( 2143.56, 991.519 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
-msg = "Null"
-locked = true
-key = "Null"
-
-[node name="door_house_3" parent="objects" index="3" instance=ExtResource( 6 )]
-
-position = Vector2( 1375.6, 1824.35 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
-msg = "Null"
-locked = true
-key = "Null"
-
-[node name="door_bar" parent="objects" index="4" instance=ExtResource( 6 )]
-
-position = Vector2( 2272.3, 1886 )
+position = Vector2( 1312.47, 413.972 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 msg = "Null"
 change_area = true
@@ -345,10 +358,10 @@ key = "Null"
 destination = "bar"
 dest_position = "door"
 
-[node name="sewer_dungeon" parent="objects" index="5" instance=ExtResource( 6 )]
+[node name="sewer_dungeon" parent="objects" index="3" instance=ExtResource( 6 )]
 
 editor/display_folded = true
-position = Vector2( 2877.44, 2485.4 )
+position = Vector2( 377.285, 1784.49 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 msg = "Null"
 change_scene = true
@@ -358,36 +371,25 @@ destination = "dungeon"
 dest_position = "player_start"
 dest_face = "down"
 
-[node name="police_1" parent="objects" index="6" instance=ExtResource( 7 )]
+[node name="police_1" parent="objects" index="4" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 1641, 38 )
+position = Vector2( 815.517, 1500.61 )
 _sections_unfolded = [ "Collision", "Transform" ]
 msg = "*Munch* *munch*
 
-Get lost kid."
+Someone should fix this fence....
+
+*Munch*"
 
 [node name="sprite" parent="objects/police_1" index="0"]
 
 texture = ExtResource( 8 )
 
-[node name="police_2" parent="objects" index="7" instance=ExtResource( 7 )]
+[node name="police_3" parent="objects" index="5" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 1958, 37 )
-_sections_unfolded = [ "Collision", "Transform" ]
-msg = "Sorry buddy, nobody is going downtown until we catch the thief that robbed the convenient store.
-
-I heard he bit the clerk..."
-
-[node name="sprite" parent="objects/police_2" index="0"]
-
-texture = ExtResource( 8 )
-
-[node name="police_3" parent="objects" index="8" instance=ExtResource( 7 )]
-
-editor/display_folded = true
-position = Vector2( 2258.64, 593.393 )
+position = Vector2( 1118.47, 529.127 )
 script = ExtResource( 9 )
 _sections_unfolded = [ "Collision", "Transform" ]
 msg = "We could catch this guy no problem if that silly dentist would just hand over his dental records...
@@ -398,10 +400,10 @@ msg = "We could catch this guy no problem if that silly dentist would just hand 
 
 texture = ExtResource( 8 )
 
-[node name="tommy" parent="objects" index="9" instance=ExtResource( 7 )]
+[node name="tommy" parent="objects" index="6" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 2402.51, 218.372 )
+position = Vector2( 1415.25, 517.541 )
 script = ExtResource( 10 )
 _sections_unfolded = [ "Collision", "Transform" ]
 msg = "Sup, dawg."
@@ -410,10 +412,10 @@ msg = "Sup, dawg."
 
 texture = ExtResource( 11 )
 
-[node name="miguel" parent="objects" index="10" instance=ExtResource( 7 )]
+[node name="miguel" parent="objects" index="7" instance=ExtResource( 7 )]
 
 editor/display_folded = true
-position = Vector2( 2065.11, 224.58 )
+position = Vector2( 1556.52, 1022.36 )
 script = ExtResource( 10 )
 _sections_unfolded = [ "Collision", "Transform" ]
 msg = "Hey man, let's chill."
@@ -437,14 +439,9 @@ anims/walk_left = SubResource( 10 )
 anims/walk_right = SubResource( 11 )
 anims/walk_up = SubResource( 12 )
 
-[node name="enemy" parent="objects" index="11" instance=ExtResource( 13 )]
-
-position = Vector2( 584.564, 584.564 )
-
 
 [editable path="objects/sewer_dungeon"]
 [editable path="objects/police_1"]
-[editable path="objects/police_2"]
 [editable path="objects/police_3"]
 [editable path="objects/tommy"]
 [editable path="objects/miguel"]

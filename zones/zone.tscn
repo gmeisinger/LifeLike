@@ -18,24 +18,18 @@ content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
 
-[node name="zone" type="Node2D"]
+[node name="zone" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="night_mask" type="CanvasModulate" parent="." index="0"]
-
-visible = false
-color = Color( 0.345098, 0.345098, 0.862745, 1 )
-_sections_unfolded = [ "Visibility" ]
-
-[node name="areas" type="Node2D" parent="." index="1"]
+[node name="areas" type="Node2D" parent="." index="0"]
 
 pause_mode = 1
 z_index = -1
 _sections_unfolded = [ "Pause", "Z Index" ]
 
-[node name="ui" type="CanvasLayer" parent="." index="2"]
+[node name="ui" type="CanvasLayer" parent="." index="1"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -116,7 +110,7 @@ percent_visible = true
 script = ExtResource( 8 )
 _sections_unfolded = [ "Anchor", "Margin", "Theme" ]
 
-[node name="player" parent="." index="3" instance=ExtResource( 9 )]
+[node name="player" parent="." index="2" instance=ExtResource( 9 )]
 
 pause_mode = 1
 position = Vector2( 687.408, 549.129 )

@@ -2,13 +2,11 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/neighborhood-lrg.tmx-9a95bae614676038deb4aac6c9d21a2a.scn"
+valid=false
 
 [deps]
 
 source_file="res://zones/neighborhood/neighborhood-lrg.tmx"
-dest_files=[ "res://.import/neighborhood-lrg.tmx-9a95bae614676038deb4aac6c9d21a2a.scn" ]
-
 [params]
 
 custom_properties=true

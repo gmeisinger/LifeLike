@@ -10,10 +10,6 @@
 
 script = ExtResource( 2 )
 
-[node name="areas" parent="." index="1"]
-
-editor/display_folded = true
-
 [node name="neighborhood" parent="areas" index="0" instance=ExtResource( 3 )]
 
 editor/display_folded = true
@@ -23,7 +19,7 @@ position = Vector2( 0, -2.45547 )
 
 [node name="bar" parent="areas" index="2" instance=ExtResource( 5 )]
 
-[node name="ui" parent="." index="2"]
+[node name="ui" parent="." index="1"]
 
 editor/display_folded = true
 

@@ -74,7 +74,6 @@ func goto_scene(zone, dest_loc, face = "up"):
 	call_deferred("_deferred_goto_scene")
 	#current_scene.queue_free() # get rid of the old scene
 	# start your "loading..." animation
-	#get_node("animation").play("loading")
 	wait_frames = 1
 
 func _process(time):
@@ -98,22 +97,23 @@ func _process(time):
 		elif err == OK:
 			update_progress()
 		else: # error during loading
-			show_error()
+			#show_error()
 			loader = null
 			break
 
 func update_progress():
 	var progress = float(loader.get_stage()) / loader.get_stage_count()
-	# Update your progress bar?
-	get_node("progress").set_progress(progress)
+	current_scene.get_node("progress").value = progress
 	# ...or update a progress animation?
-	var length = get_node("animation").get_current_animation_length()
+#	var length = get_node("animation").get_current_animation_length()
 	# Call this on a paused animation. Use "true" as the second argument to force the animation to update.
-	get_node("animation").seek(progress * length, true)
+#	get_node("animation").seek(progress * length, true)
+	pass
 
 func set_new_scene(scene_resource):
+	current_scene.queue_free()
 	current_scene = scene_resource.instance()
-	get_node("/root").add_child(current_scene)
+	get_tree().get_root().add_child(current_scene)
 
 func goto_title():
 	call_deferred("_deferred_goto_scene", "res://ui/titlescreen.tscn")

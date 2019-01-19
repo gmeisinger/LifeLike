@@ -7,8 +7,9 @@ const ATTACK_SPEED = 1.0
 const INVINCIBLE_TIME = 0.3
 const DODGE_FORCE = 200.0
 
-var normal_sprite = preload("res://actors/player/player.png")
-var weapon_sprite = preload("res://actors/player/player-weapon.png")
+var cooldowns = {
+	"dodge" : 0.5
+	}
 
 enum {WALKING, IDLE, ATTACKING, RECOILING, DODGING}
 var state = IDLE
@@ -51,10 +52,7 @@ func _ready():
 	anims["down_right"] = anims_down_right
 	add_anim("attack")
 	add_anim("dodge")
-	var guide = "Move with WSAD\nSPACE -- Interact\nSHIFT -- Dodge\nLEFT CLICK -- Attack"
-	if player_vars.guide:
-		player_vars.guide = false
-		emit_signal("open_dialog", guide)
+	connect("open_dialog", global.get_cur_scene().get_node("ui/dialog"), "open")
 	#set_pause_mode(Node.PAUSE_MODE_STOP)
 	shape_adjust = Vector2(get_node("interact/shape").get_shape().get_radius(), get_node("interact/shape").get_shape().get_height()/2)
 	pass

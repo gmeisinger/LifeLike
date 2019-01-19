@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal open_dialog
 signal open_choice_dialog
 
-export(String) var msg
+export(String, MULTILINE) var msg
 
 func _ready():
 	connect("open_dialog", global.get_cur_scene().get_node("ui/dialog"), "open")
@@ -11,5 +11,5 @@ func _ready():
 	pass
 
 func interact():
-	emit_signal("dialog_open", get_class())
+	emit_signal("dialog_open", msg)
 	pass

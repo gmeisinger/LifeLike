@@ -68,9 +68,7 @@ func build_map():
 		if check_overlap(new_room):
 			rooms.append(new_room)
 			carve_room(new_room)
-	print("...done")
 	# we've placed all the rooms, now connect with doorways
-	print("connecting rooms...")
 	connect_rooms()
 	print("...done")
 	# print out some room stats?

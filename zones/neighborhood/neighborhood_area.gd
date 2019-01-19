@@ -19,7 +19,6 @@ var npc_messages = [
 	]
 
 func _ready():
-	state = NIGHT
 	pass
 
 
@@ -27,17 +26,10 @@ func _process(delta):
 	spawn_timer += delta
 	if spawn_timer > SPAWN_DELAY:
 		spawn_timer = 0
-		match(state):
-			DAY:
-				global.get_cur_scene().get_node("night_mask").visible = false
-				if spawn_count < MAX_PASSERBY:
-					var npc = spawn_passerby()
-					npc.msg = pick_message()
-					spawn_count += 1
-			NIGHT:
-				global.get_cur_scene().get_node("night_mask").visible = true
-				if global.get_random_number(0,3) > 0:
-					var enemy = spawn_enemy()
+		if spawn_count < MAX_PASSERBY:
+			var npc = spawn_passerby()
+			npc.msg = pick_message()
+			spawn_count += 1
 		
 func pick_message():
 	var rand_int = global.get_random_number(0, len(npc_messages))

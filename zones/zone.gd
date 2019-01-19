@@ -40,9 +40,9 @@ func check_camera():
 	if min_values.y > camera.limit_bottom:
 		camera.limit_top = -1000000
 		camera.limit_bottom = 1000000
+	camera.align()
 
 func set_active_area(area, loc, face):
-	get_node("night_mask").visible = false
 	#save player state
 	player = active_area.remove_player()
 	#save area state

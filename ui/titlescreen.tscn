@@ -6,7 +6,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://ui/fonts/gameboy.tres" type="DynamicFont" id=5]
 
-[node name="titlescreen" type="ViewportContainer"]
+[node name="titlescreen" type="ViewportContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -19,7 +19,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 theme = ExtResource( 1 )
-stretch = false
+stretch = true
 stretch_shrink = 1
 script = ExtResource( 2 )
 _sections_unfolded = [ "Theme" ]

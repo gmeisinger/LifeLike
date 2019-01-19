@@ -4,12 +4,12 @@
 
 extends "res://zones/zone.gd"
 
-onready var area_scn = preload("res://zones/area.tscn")
-onready var tileset = preload("res://zones/tilesets/original_tiles.tres")
-onready var generator_script = preload("res://src/dungeon_generator.gd")
-onready var astar_script = preload("res://src/astar.gd")
-onready var loc_script = preload("res://src/location.gd")
-onready var enemy_scene = preload("res://actors/npcs/enemies/enemy.tscn")
+onready var area_scn = "res://zones/area.tscn"
+onready var tileset = "res://zones/tilesets/original_tiles.tres"
+onready var generator_script = "res://src/dungeon_generator.gd"
+onready var astar_script = "res://src/astar.gd"
+onready var loc_script = "res://src/location.gd"
+onready var enemy_scene = "res://actors/npcs/enemies/enemy.tscn"
 var generator
 
 onready var floor_number = 1
@@ -29,7 +29,7 @@ func _ready():
 
 func initialize():
 	print("entering")
-	generator = generator_script.new(100, 100)
+	generator = load(generator_script).new(100, 100)
 	print("entering genfloor")
 	gen_floor()
 	.initialize()
@@ -37,13 +37,14 @@ func initialize():
 
 func place_enemies(area):
 	var enemy
-	for room in generator.get_rooms():
-		if room.size_class == "medium":
+	var rooms = generator.get_rooms()
+	for i in range(1, rooms.size()):
+		if rooms[i].size_class == "medium":
 			enemy = area.new_enemy()
-			enemy.set_position(room.get_center())
-		elif room.size_class == "large":
+			enemy.set_position(rooms[i].get_center())
+		elif rooms[i].size_class == "large":
 			enemy = area.new_enemy()
-			enemy.set_position(room.get_center())
+			enemy.set_position(rooms[i].get_center())
 	
 func print_map(grid):
 	for row in grid:
@@ -59,12 +60,12 @@ func gen_floor():
 	# declare some vars
 	var rooms = []
 	# setup the area scene
-	var new_floor = area_scn.instance()
+	var new_floor = load(area_scn).instance()
 	new_floor.name = "floor_" + String(floor_number)
 	floor_number += 1
 	var map_node = Node2D.new()
 	map_node.name = "map"
-	map_node.set_script(astar_script)
+	map_node.set_script(load(astar_script))
 	new_floor.add_child(map_node)
 	new_floor.move_child(map_node, 0)
 	# create first tilemap layer
@@ -86,7 +87,7 @@ func new_loc(_pos, _name):
 	var loc = Position2D.new()
 	loc.name = _name
 	loc.set_position(_pos)
-	loc.set_script(loc_script)
+	loc.set_script(load(loc_script))
 	return loc
 
 func place_tiles(tmap, grid):
@@ -98,7 +99,7 @@ func place_tiles(tmap, grid):
 func new_tilemap(_name):
 	var tmap = TileMap.new()
 	tmap.name = _name
-	tmap.set_tileset(tileset)
+	tmap.set_tileset(load(tileset))
 	tmap._update_dirty_quadrants()
 	tmap.set_collision_layer_bit(0, true) #terrain
 	return tmap

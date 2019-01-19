@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.2" tiledversion="1.2.1" name="tiles" tilewidth="64" tileheight="64" tilecount="300" columns="20">
- <image source="../../../Hacker/zones/tilesets/tiles-64.png" width="1280" height="960"/>
+ <image source="tiles.png" width="1280" height="960"/>
  <tile id="1">
   <objectgroup draworder="index">
    <object id="1" template="../../../art/tiled/64square.tx" type="navigation" x="0" y="0"/>

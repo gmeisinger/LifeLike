@@ -7,11 +7,11 @@
 
 script = ExtResource( 2 )
 
-[node name="ui" parent="." index="2"]
+[node name="ui" parent="." index="1"]
 
 editor/display_folded = true
 
-[node name="player" parent="." index="3"]
+[node name="player" parent="." index="2"]
 
 position = Vector2( 488.523, 214.297 )
 
